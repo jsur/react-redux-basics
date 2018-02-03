@@ -1,5 +1,6 @@
 // reducer function
-
+// new state is created by combining old state with the action in the reducer.
+// reducer functions must be pure functions.
 function reducer(state, action) {
   if (action.type === 'INCREMENT') {
     return state + action.amount;
@@ -22,10 +23,14 @@ function reducer(state, action) {
   from the dispatch() function.
 */
 function createStore(reducer) {
+  // all app data is stored in a single data structure called the state.
+  // state is a private variable and cannot be mutated outside of the store.
   let state = 0;
 
+  // app will read the state from this store.
   const getState = () => (state);
 
+  // views emit actions to describe what happened.
   const dispatch = (action) => {
     state = reducer(state, action);
   };
